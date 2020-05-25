@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">KotNews</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="history">History</string>
+    <string name="like">Like</string>
+    <string name="nav_header_subtitle">Design by Maxy</string>
+    <string name="nav_header_title">KotNews</string>
+</resources>
