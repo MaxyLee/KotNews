@@ -20,8 +20,8 @@
         android:name="com.example.android.kotnews.NewsFragment"
         android:label="NewsFragment" >
         <argument
-            android:name="hi"
-            app:argType="string" />
+            android:name="newsId"
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/historyFragment"

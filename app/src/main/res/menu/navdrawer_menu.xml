@@ -13,4 +13,16 @@
 
     </item>
 
+    <item
+        android:id="@+id/insert_menu"
+        android:title="Insert">
+
+    </item>
+
+    <item
+        android:id="@+id/clear_menu"
+        android:title="Clear">
+
+    </item>
+
 </menu>
