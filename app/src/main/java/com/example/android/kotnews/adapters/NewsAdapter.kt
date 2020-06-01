@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.kotnews.data.News
 import com.example.android.kotnews.databinding.ListItemNewsBinding
 
-class NewsAdapter(val clickListener: NewsListener): ListAdapter<News, NewsAdapter.ViewHolder>(NewsDiffCallback()) {
+class NewsAdapter(val clickListener: NewsListener, val likeListener: LikeListener): ListAdapter<News, NewsAdapter.ViewHolder>(NewsDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
@@ -17,14 +17,15 @@ class NewsAdapter(val clickListener: NewsListener): ListAdapter<News, NewsAdapte
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(clickListener, item)
+        holder.bind(clickListener, likeListener, item)
     }
 
     class ViewHolder private constructor(val binding: ListItemNewsBinding): RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(clickListener: NewsListener, item: News) {
+        fun bind(clickListener: NewsListener, likeListener: LikeListener, item: News) {
             binding.news = item
             binding.clickListener = clickListener
+            binding.likeListener = likeListener
             binding.executePendingBindings()
         }
 
@@ -50,5 +51,9 @@ class NewsDiffCallback: DiffUtil.ItemCallback<News>() {
 }
 
 class NewsListener(val clickListener: (newsId: Long) -> Unit) {
+    fun onClick(news: News) = clickListener(news.newsId)
+}
+
+class LikeListener(val clickListener: (newsId: Long) -> Unit) {
     fun onClick(news: News) = clickListener(news.newsId)
 }

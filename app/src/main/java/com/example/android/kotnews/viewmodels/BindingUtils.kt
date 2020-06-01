@@ -1,6 +1,6 @@
 package com.example.android.kotnews.viewmodels
 
-import android.annotation.SuppressLint
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.example.android.kotnews.R
@@ -36,5 +36,16 @@ fun TextView.setNewsColor(item: News?) {
             resources.getColor(R.color.black)
         })
 //        setTextColor(resources.getColor(R.color.colorAccent))
+    }
+}
+
+@BindingAdapter("liked")
+fun ImageView.setLiked(item: News?) {
+    item?.let {
+        background = if(it.liked) {
+            resources.getDrawable(R.drawable.ic_liked)
+        } else {
+            resources.getDrawable(R.drawable.ic_like)
+        }
     }
 }

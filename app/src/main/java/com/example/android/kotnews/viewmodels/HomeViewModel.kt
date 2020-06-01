@@ -36,7 +36,7 @@ class HomeViewModel(
         }
     }
 
-    private suspend fun update(newsId: Long) {
+    private suspend fun viewed(newsId: Long) {
         withContext(Dispatchers.IO) {
             val news = database.get(newsId)
             news?.let {
@@ -44,6 +44,16 @@ class HomeViewModel(
                     it.viewed = true
                     database.update(it)
                 }
+            }
+        }
+    }
+
+    private suspend fun liked(newsId: Long) {
+        withContext((Dispatchers.IO)) {
+            val news = database.get(newsId)
+            news?.let {
+                news.liked = !news.liked
+                database.update(news)
             }
         }
     }
@@ -66,7 +76,7 @@ class HomeViewModel(
     fun onNewsViewed(newsId: Long) {
         uiScope.launch {
             Log.i(TAG, "onNewsViewed called!")
-            update(newsId)
+            viewed(newsId)
         }
     }
 
@@ -76,5 +86,11 @@ class HomeViewModel(
 
     fun onNewsNavigated() {
         _navigateToNews.value = null
+    }
+
+    fun onLikeClicked(id: Long) {
+        uiScope.launch {
+            liked(id)
+        }
     }
 }

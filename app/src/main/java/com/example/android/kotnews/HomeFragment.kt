@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
+import com.example.android.kotnews.adapters.LikeListener
 import com.example.android.kotnews.adapters.NewsAdapter
 import com.example.android.kotnews.adapters.NewsListener
 import com.example.android.kotnews.data.NewsDatabase
@@ -38,8 +39,9 @@ class HomeFragment : Fragment() {
         homeViewModel = ViewModelProviders.of(this, viewModelFactory).get(HomeViewModel::class.java)
 
         val adapter = NewsAdapter(NewsListener { newsId ->
-//            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToNewsFragment(newsId))
             homeViewModel.onNewsClicked(newsId)
+        }, LikeListener { newsId ->
+            homeViewModel.onLikeClicked(newsId)
         })
 
         binding.viewModel = homeViewModel

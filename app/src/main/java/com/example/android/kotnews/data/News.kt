@@ -15,5 +15,7 @@ data class News(
     @ColumnInfo(name = "text")
     val text: String = "No text",
     @ColumnInfo(name = "viewed")
-    var viewed: Boolean = false) {
+    var viewed: Boolean = false,
+    @ColumnInfo(name = "liked")
+    var liked: Boolean = false) {
 }
